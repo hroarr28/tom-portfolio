@@ -1,37 +1,38 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, DM_Sans } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-heading",
+  variable: "--font-sans",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Tom Chamberlin — Full Stack Developer",
   description:
-    "Full stack developer specialising in Next.js, React, TypeScript and AI-powered applications. Based in the UK, available for hybrid roles and freelance work.",
+    "Full stack developer building AI-powered products with Next.js, React, TypeScript, and Supabase. Based in the UK.",
   keywords: [
     "Next.js developer",
     "React developer",
     "TypeScript",
     "AI developer",
-    "UK",
-    "freelance",
     "Supabase",
+    "UK",
     "full stack",
+    "RAG",
+    "vector embeddings",
   ],
   openGraph: {
     title: "Tom Chamberlin — Full Stack Developer",
     description:
-      "Full stack developer specialising in Next.js, React, TypeScript and AI-powered applications.",
+      "Full stack developer building AI-powered products with Next.js, React, TypeScript, and Supabase.",
     type: "website",
   },
 };
@@ -44,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${spaceGrotesk.variable} ${dmSans.variable} font-body antialiased bg-zinc-950 text-zinc-100`}
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-zinc-950 text-zinc-100`}
       >
         {children}
       </body>

@@ -1,8 +1,9 @@
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
-import { About } from "@/components/about";
+import { Stats } from "@/components/stats";
 import { Projects } from "@/components/projects";
-import { AIWorkflow } from "@/components/ai-workflow";
+import { CaseStudyPreview } from "@/components/case-study-preview";
+import { AISection } from "@/components/ai-section";
 import { Skills } from "@/components/skills";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
@@ -13,9 +14,10 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <About />
+        <Stats />
         <Projects />
-        <AIWorkflow />
+        <CaseStudyPreview />
+        <AISection />
         <Skills />
         <Contact />
       </main>

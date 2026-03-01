@@ -1,29 +1,31 @@
 export function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 pt-16">
-      <div className="max-w-3xl text-center">
-        <p className="text-brand font-mono text-sm tracking-wider uppercase mb-4 animate-fade-in-up">
+    <section className="pt-32 pb-16 px-6">
+      <div className="max-w-3xl mx-auto">
+        <p className="text-brand font-mono text-xs tracking-wider uppercase mb-3">
           Full Stack Developer
         </p>
-        <h1 className="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] animate-fade-in-up animate-delay-100">
-          I build products<br />
-          <span className="text-brand">powered by AI</span>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
+          I build products that{" "}
+          <span className="text-brand">solve real problems</span> — with AI
+          woven into every layer.
         </h1>
-        <p className="mt-6 text-lg text-zinc-400 max-w-xl mx-auto leading-relaxed animate-fade-in-up animate-delay-200">
-          Next.js, React, TypeScript and Supabase — with AI woven into every
-          stage of development. From idea to shipped product, faster than
-          you&apos;d expect.
+        <p className="text-lg text-zinc-400 leading-relaxed max-w-2xl mb-8">
+          3 years shipping production apps with Next.js, TypeScript, and
+          Supabase. I use AI not as a gimmick, but as infrastructure — from
+          multi-agent pipelines to RAG-powered search to computer vision
+          extraction.
         </p>
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animate-delay-300">
+        <div className="flex flex-col sm:flex-row gap-3">
           <a
             href="#projects"
-            className="px-8 py-3.5 bg-brand hover:bg-brand-light text-white font-medium rounded-lg transition-colors"
+            className="inline-flex items-center justify-center px-6 py-3 bg-brand hover:bg-brand-dim text-white text-sm font-medium rounded-lg transition-colors"
           >
-            View my work
+            See my work
           </a>
           <a
             href="#contact"
-            className="px-8 py-3.5 border border-zinc-700 hover:border-zinc-500 text-zinc-300 hover:text-white font-medium rounded-lg transition-colors"
+            className="inline-flex items-center justify-center px-6 py-3 border border-zinc-700 hover:border-zinc-500 text-zinc-300 hover:text-white text-sm font-medium rounded-lg transition-colors"
           >
             Get in touch
           </a>
