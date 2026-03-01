@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { IBM_Plex_Mono, Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-sans",
+  weight: ["500", "700"],
+  variable: "--font-mono",
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-mono",
+  weight: ["400", "600"],
+  variable: "--font-sans",
   display: "swap",
 });
 
@@ -45,7 +47,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-zinc-950 text-zinc-100`}
+        className={`${ibmPlexMono.variable} ${inter.variable} font-sans antialiased`}
+        style={{ background: "#0a0a0a", color: "#d4d4d8" }}
       >
         {children}
       </body>

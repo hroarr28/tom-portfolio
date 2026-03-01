@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Split & Play Case Study — Tom Chamberlin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --black: #0a0a0a;
+      --zinc-50: #fafafa;
+      --zinc-300: #d4d4d8;
+      --zinc-400: #a1a1aa;
+      --zinc-500: #71717a;
+      --zinc-600: #52525b;
+      --zinc-700: #3f3f46;
+      --zinc-800: #27272a;
+      --zinc-900: #18181b;
+      --accent: #D97847;
+      --accent-dim: #B85F35;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--black);
+      color: var(--zinc-400);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .mono {
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--zinc-800);
+      z-index: 100;
+    }
+    
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--zinc-400);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    
+    .back-link:hover {
+      color: var(--accent);
+    }
+    
+    .logo {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--zinc-50);
+      text-decoration: none;
+    }
+    
+    /* Hero */
+    .case-hero {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 160px 24px 80px;
+    }
+    
+    .breadcrumb {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    
+    h1 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--zinc-50);
+      margin-bottom: 48px;
+    }
+    
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px 48px;
+      padding: 32px 0;
+      border-top: 1px solid var(--zinc-800);
+      border-bottom: 1px solid var(--zinc-800);
+      margin-bottom: 48px;
+    }
+    
+    .meta-item h3 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--zinc-600);
+      margin-bottom: 8px;
+    }
+    
+    .meta-item p {
+      font-size: 14px;
+      color: var(--zinc-300);
+    }
+    
+    .stack-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .stack-tag {
+      font-size: 11px;
+      padding: 4px 10px;
+      background: var(--zinc-800);
+      border: 1px solid var(--zinc-700);
+      border-radius: 3px;
+      color: var(--zinc-500);
+    }
+    
+    .external-links {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .external-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    
+    .external-link:hover {
+      color: var(--zinc-50);
+    }
+    
+    /* Content */
+    .case-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px 120px;
+    }
+    
+    .case-content h2 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--zinc-50);
+      margin-top: 64px;
+      margin-bottom: 16px;
+    }
+    
+    .case-content h2:first-child {
+      margin-top: 0;
+    }
+    
+    .case-content h3 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--zinc-300);
+      margin-top: 48px;
+      margin-bottom: 12px;
+    }
+    
+    .case-content p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--zinc-400);
+      margin-bottom: 20px;
+    }
+    
+    .case-content strong {
+      color: var(--zinc-300);
+      font-weight: 600;
+    }
+    
+    .case-content code {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      padding: 2px 6px;
+      background: var(--zinc-900);
+      border: 1px solid var(--zinc-800);
+      border-radius: 3px;
+      color: var(--accent);
+    }
+    
+    .case-content ul {
+      list-style: none;
+      margin: 24px 0;
+      padding: 0;
+    }
+    
+    .case-content li {
+      position: relative;
+      padding-left: 32px;
+      margin-bottom: 16px;
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--zinc-400);
+    }
+    
+    .case-content li:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 16px;
+      height: 2px;
+      background: var(--accent);
+    }
+    
+    .case-content em {
+      font-style: italic;
+      color: var(--zinc-500);
+    }
+    
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--zinc-800);
+      padding: 48px 24px;
+      text-align: center;
+    }
+    
+    .footer-text {
+      font-size: 13px;
+      color: var(--zinc-600);
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 32px;
+      }
+      
+      .meta-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      
+      .external-links {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .case-content h2 {
+        font-size: 20px;
+      }
+      
+      .case-content h3 {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back
+      </a>
+      <a href="/" class="logo">TC</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="case-hero">
+    <p class="breadcrumb">Split & Play</p>
+    <h1>Building a real-time audio engine with 7-stem AI separation</h1>
+    
+    <div class="meta-grid">
+      <div class="meta-item">
+        <h3>Role</h3>
+        <p>Solo developer — architecture, frontend, backend, DevOps</p>
+      </div>
+      <div class="meta-item">
+        <h3>Timeline</h3>
+        <p>4 weeks</p>
+      </div>
+      <div class="meta-item">
+        <h3>Stack</h3>
+        <div class="stack-tags">
+          <span class="stack-tag">Next.js 16</span>
+          <span class="stack-tag">TypeScript</span>
+          <span class="stack-tag">Supabase</span>
+          <span class="stack-tag">Replicate</span>
+          <span class="stack-tag">Modal</span>
+          <span class="stack-tag">Howler.js</span>
+          <span class="stack-tag">Tone.js</span>
+          <span class="stack-tag">Zustand</span>
+          <span class="stack-tag">Tailwind</span>
+        </div>
+      </div>
+      <div class="meta-item">
+        <h3>Links</h3>
+        <div class="external-links">
+          <a href="https://part-master.vercel.app" target="_blank" class="external-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+              <path d="M15 3h6v6"/>
+              <path d="M10 14L21 3"/>
+            </svg>
+            Live demo
+          </a>
+          <a href="https://github.com/hroarr28/partMaster" target="_blank" class="external-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="case-content">
+    <h2>The problem</h2>
+    <p>Musicians learning new songs need to isolate specific instruments — hear just the bass line, mute the vocals to sing along, slow down a guitar solo. Existing tools either cost £20+/month, only split into 2 stems (vocals/accompaniment), or have no practice features beyond basic playback.</p>
+    <p>I wanted to build a tool that does the separation <strong>and</strong> provides a proper practice environment: mixer controls, tempo adjustment, pitch shifting, section markers, and intelligent click tracks — all in the browser.</p>
+
+    <h2>Architecture decisions that shaped everything</h2>
+
+    <h3>Why fire-and-forget with frontend polling</h3>
+    <p>The biggest constraint was Vercel's 60-second function timeout. Demucs stem separation takes 2-5 minutes. I couldn't run it server-side.</p>
+    <p>The solution: a <strong>fire-and-forget process route</strong> that triggers the Replicate job and returns immediately, plus a <strong>status route</strong> that the frontend polls every 3 seconds. When stems are ready, the status route downloads them one at a time (each stem is 5-15MB as MP3) and uploads to Supabase Storage.</p>
+    <p>One-stem-per-poll was critical — downloading all 6 stems in a single response would exceed Vercel's function payload limit.</p>
+
+    <h3>Why Replicate, not self-hosted Demucs</h3>
+    <p>I built local Demucs separation first (Python venv, htdemucs_6s model). It works perfectly on my Mac Mini. But Demucs needs ~4GB RAM and several minutes of CPU time — that's impossible on Vercel's serverless functions.</p>
+    <p>Replicate runs the same model on GPU for ~$0.05/song. The tradeoff was clear: local for development, Replicate for production.</p>
+    <p>One gotcha: the original Replicate model (<code>cjwbw/demucs</code>) was broken — it returned identical audio for every stem. I had to switch to <code>ryan5453/demucs</code> and specify <code>htdemucs_ft</code> with 320kbps MP3 output. Debugging that cost a full day because the files <em>looked</em> different in file size but sounded identical.</p>
+
+    <h3>Direct browser-to-Supabase uploads</h3>
+    <p>Vercel has a 4.5MB function body limit. Song files are 5-50MB. The solution was to upload directly from the browser to Supabase Storage using a signed upload URL, bypassing the API route entirely for the file payload.</p>
+
+    <h2>The smart click track challenge</h2>
+    <p>A basic metronome is just a beep every N milliseconds. A <strong>smart</strong> click track detects the actual beats in the song and places clicks on them — including accented downbeats and a count-in.</p>
+    <p>I built a Python script using <strong>librosa</strong> for onset strength analysis and beat tracking. It generates a WAV file with 1200Hz tones on downbeats and 800Hz on other beats, plus a 4-beat count-in at the detected BPM.</p>
+    <p>For production, this runs on a <strong>Modal</strong> serverless endpoint. The original approach was to fire-and-forget from the status route, but Modal's cold start (30-60 seconds) caused timeouts. I moved it to a dedicated <code>/api/songs/[songId]/generate-click</code> endpoint with a 60-second timeout, called separately from stem separation.</p>
+    <p>Race condition: if two users trigger click generation simultaneously, you get duplicate processing. I added an atomic lock using a <code>click_generating</code> boolean column on the songs table, with a 2-minute stale lock reset.</p>
+
+    <h2>The audio engine</h2>
+    <p>Seven independent audio streams (vocals, drums, bass, guitar, piano, other, click) need to play perfectly synchronised with individual volume, mute, and solo controls. Plus tempo change (0.25x-2x) and pitch shift (±12 semitones) applied to all stems simultaneously.</p>
+    <p><strong>Howler.js</strong> handles playback and volume. <strong>Tone.js</strong> handles tempo and pitch via its GrainPlayer. The tricky part was sync drift — after tempo changes, stems can drift apart by 10-15ms. I added a sync correction that resets all stem positions when drift exceeds the threshold.</p>
+    <p>A-B looping had its own edge case: if the loop region was too small (&lt;0.5 seconds), stems would enter an infinite seek loop trying to snap to the boundaries. I enforced a minimum 0.5-second gap.</p>
+
+    <h2>Mobile: harder than expected</h2>
+    <p>shadcn's Button component with the <code>outline</code> variant has background overrides (<code>bg-background</code> and <code>dark:bg-input/30</code>) that fight custom active/inactive styling for mute and solo buttons. On desktop this wasn't visible, but on mobile the wrong background bled through.</p>
+    <p>Fix: replaced shadcn Buttons with native <code>&lt;button&gt;</code> elements for all toggle controls, and added <code>touch-manipulation</code> CSS to prevent the 300ms tap delay on mobile Safari.</p>
+
+    <h2>AI usage</h2>
+    <ul>
+      <li><strong>Demucs AI model</strong> — the core of the product. Separates mixed audio into 6 stems using deep learning.</li>
+      <li><strong>librosa beat detection</strong> — analyses onset strength patterns to find beat positions for the click track.</li>
+      <li><strong>web-audio-beat-detector</strong> — browser-side BPM detection for immediate tempo display before server analysis.</li>
+      <li><strong>Cursor + Claude</strong> — used for complex audio sync logic and debugging the Replicate integration. I wrote the architecture and core logic; AI helped with edge cases and the more verbose Howler.js API calls.</li>
+    </ul>
+
+    <h2>Results</h2>
+    <ul>
+      <li><strong>7-stem separation</strong> working end-to-end on Vercel</li>
+      <li><strong>74 tests passing</strong>, lint clean, build clean</li>
+      <li><strong>~$0.05 per song</strong> processing cost</li>
+      <li><strong>Sub-2-second</strong> page load (static shell + client hydration)</li>
+      <li><strong>Full practice suite</strong>: mixer, tempo, pitch, loops, markers, session tracking, CSV export</li>
+    </ul>
+
+    <h2>What I'd do differently</h2>
+    <ul>
+      <li><strong>WebSocket instead of polling</strong> — the 3-second poll interval means up to 3 seconds of unnecessary delay. A WebSocket connection would push status updates instantly.</li>
+      <li><strong>Web Audio API directly</strong> — Howler.js abstracts away useful low-level controls. For a v2, I'd build the audio engine on raw Web Audio API for tighter sync control.</li>
+      <li><strong>Test the Replicate model earlier</strong> — I assumed the top-result model would work. It didn't. Always test the actual output before building the integration layer.</li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p class="footer-text">&copy; 2025 Tom Chamberlin. Built with Next.js and deployed on Vercel.</p>
+  </footer>
+</body>
+</html>

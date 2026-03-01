@@ -7,18 +7,18 @@ const stats = [
 
 export function Stats() {
   return (
-    <section className="py-12 px-6 border-y border-zinc-800/50">
-      <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div className="border-y border-zinc-800 py-12 px-6">
+      <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
         {stats.map((stat) => (
           <div key={stat.label} className="text-center">
-            <p className="text-2xl sm:text-3xl font-bold text-brand mb-1">
+            <p className="font-mono text-4xl font-bold text-accent mb-2">
               {stat.value}
             </p>
-            <p className="text-sm text-zinc-300 font-medium">{stat.label}</p>
-            <p className="text-xs text-zinc-600 mt-0.5">{stat.detail}</p>
+            <p className="text-sm font-semibold text-zinc-300 mb-1">{stat.label}</p>
+            <p className="text-xs text-zinc-600">{stat.detail}</p>
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 }

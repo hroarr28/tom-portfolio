@@ -33,38 +33,30 @@ const capabilities = [
 
 export function AISection() {
   return (
-    <section id="ai" className="py-20 px-6">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-2xl font-bold mb-2">How I use AI</h2>
-        <p className="text-zinc-500 text-sm mb-10 max-w-2xl">
+    <section id="ai" className="max-w-[1200px] mx-auto px-6 py-28">
+      <div className="mb-16">
+        <h2 className="font-mono text-3xl font-bold text-zinc-50 mb-3">How I use AI</h2>
+        <p className="text-[15px] text-zinc-500 max-w-[600px]">
           Beyond API calls and chatbot wrappers. I build AI into product
-          infrastructure \u2014 from vector search to multi-agent systems to
+          infrastructure — from vector search to multi-agent systems to
           computer vision pipelines.
         </p>
+      </div>
 
-        <div className="space-y-4">
-          {capabilities.map((cap) => (
-            <div
-              key={cap.title}
-              className="bg-surface border border-border rounded-xl p-5 md:p-6 hover:border-zinc-700 transition-colors"
-            >
-              <h3 className="text-sm font-semibold mb-2">{cap.title}</h3>
-              <p className="text-xs text-zinc-400 leading-relaxed mb-3">
-                {cap.description}
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {cap.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[10px] px-2 py-0.5 rounded-full bg-brand/10 text-brand border border-brand/20"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+      <div className="flex flex-col gap-4">
+        {capabilities.map((cap) => (
+          <div key={cap.title} className="bg-zinc-900 border border-zinc-800 rounded-lg p-8">
+            <h3 className="text-base font-semibold text-zinc-50 mb-3">{cap.title}</h3>
+            <p className="text-[13px] leading-[1.7] text-zinc-400 mb-4">{cap.description}</p>
+            <div className="flex flex-wrap gap-2">
+              {cap.tags.map((tag) => (
+                <span key={tag} className="text-[10px] px-2.5 py-1 rounded bg-accent/10 border border-accent/30 text-accent">
+                  {tag}
+                </span>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

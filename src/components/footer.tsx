@@ -1,14 +1,9 @@
 export function Footer() {
   return (
-    <footer className="py-8 px-6 border-t border-zinc-800/50">
-      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-zinc-600 text-xs">
-          Tom Chamberlin {new Date().getFullYear()}
-        </p>
-        <p className="text-zinc-700 text-xs">
-          Built with Next.js + TypeScript + Tailwind
-        </p>
-      </div>
+    <footer className="border-t border-zinc-800 py-12 px-6 text-center">
+      <p className="text-[13px] text-zinc-600">
+        &copy; {new Date().getFullYear()} Tom Chamberlin. Built with Next.js and deployed on Vercel.
+      </p>
     </footer>
   );
 }

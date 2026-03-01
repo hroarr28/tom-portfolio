@@ -21,41 +21,40 @@ const studies = [
 
 export function CaseStudyPreview() {
   return (
-    <section id="case-studies" className="py-20 px-6 bg-surface">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-2xl font-bold mb-2">Case Studies</h2>
-        <p className="text-zinc-500 text-sm mb-10 max-w-2xl">
-          Deep dives into the architecture decisions, trade-offs, and
-          challenges behind each project. Not just what I built — why I built
-          it that way.
-        </p>
+    <section id="case-studies" className="bg-zinc-900 py-28 px-6">
+      <div className="max-w-[1200px] mx-auto">
+        <div className="mb-16">
+          <h2 className="font-mono text-3xl font-bold text-zinc-50 mb-3">Case Studies</h2>
+          <p className="text-[15px] text-zinc-500 max-w-[600px]">
+            Deep dives into the architecture decisions, trade-offs, and
+            challenges behind each project. Not just what I built — why I built
+            it that way.
+          </p>
+        </div>
 
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-3 gap-6">
           {studies.map((study) => (
             <a
               key={study.href}
               href={study.href}
-              className="group block bg-raised border border-border rounded-xl p-5 hover:border-brand/30 transition-colors"
+              className="group block bg-zinc-900 border border-zinc-800 rounded-xl p-8 no-underline hover:border-zinc-600 transition-colors"
             >
-              <p className="text-xs text-brand font-mono mb-2">
+              <p className="font-mono text-[11px] font-bold text-accent mb-3">
                 {study.project}
               </p>
-              <h3 className="text-sm font-semibold leading-snug mb-3 group-hover:text-white transition-colors">
+              <h3 className="text-base font-semibold leading-snug text-zinc-300 group-hover:text-zinc-50 mb-5 transition-colors">
                 {study.title}
               </h3>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-2 mb-6">
                 {study.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[10px] px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-500 border border-zinc-700/50"
-                  >
+                  <span key={tag} className="text-[10px] px-2.5 py-1 bg-zinc-800 border border-zinc-700 rounded text-zinc-500">
                     {tag}
                   </span>
                 ))}
               </div>
-              <p className="text-xs text-brand/70 mt-4 group-hover:text-brand transition-colors inline-flex items-center gap-1">
+              <p className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent group-hover:text-zinc-50 transition-colors">
                 Read more
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </p>

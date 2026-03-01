@@ -45,23 +45,23 @@ const categories = [
 
 export function Skills() {
   return (
-    <section id="skills" className="py-20 px-6 bg-surface">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-2xl font-bold mb-2">Skills</h2>
-        <p className="text-zinc-500 text-sm mb-10">
-          Grouped by category, with honest context on experience level.
-        </p>
+    <section id="skills" className="bg-zinc-900 py-28 px-6">
+      <div className="max-w-[1200px] mx-auto">
+        <div className="mb-16">
+          <h2 className="font-mono text-3xl font-bold text-zinc-50 mb-3">Skills</h2>
+          <p className="text-[15px] text-zinc-500">Grouped by category, with honest context on experience level.</p>
+        </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
           {categories.map((cat) => (
             <div key={cat.title}>
-              <h3 className="text-xs font-semibold text-brand uppercase tracking-wider mb-4">
+              <h3 className="font-mono text-[11px] font-bold tracking-[0.1em] uppercase text-accent mb-6">
                 {cat.title}
               </h3>
-              <div className="space-y-2.5">
+              <div className="flex flex-col gap-4">
                 {cat.skills.map((skill) => (
                   <div key={skill.name}>
-                    <p className="text-sm text-zinc-300">{skill.name}</p>
+                    <p className="text-sm font-semibold text-zinc-300">{skill.name}</p>
                     <p className="text-[11px] text-zinc-600">{skill.level}</p>
                   </div>
                 ))}

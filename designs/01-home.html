@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tom Chamberlin — Full Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --black: #0a0a0a;
+      --zinc-50: #fafafa;
+      --zinc-300: #d4d4d8;
+      --zinc-400: #a1a1aa;
+      --zinc-500: #71717a;
+      --zinc-600: #52525b;
+      --zinc-700: #3f3f46;
+      --zinc-800: #27272a;
+      --zinc-900: #18181b;
+      --accent: #D97847;
+      --accent-dim: #B85F35;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--black);
+      color: var(--zinc-300);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .mono {
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--zinc-800);
+      z-index: 100;
+    }
+    
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--zinc-50);
+      text-decoration: none;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      color: var(--zinc-400);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+    
+    /* Hero */
+    .hero {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 160px 24px 80px;
+    }
+    
+    .label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    
+    h1 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--zinc-50);
+      margin-bottom: 24px;
+    }
+    
+    h1 .accent {
+      color: var(--accent);
+    }
+    
+    .lead {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--zinc-400);
+      margin-bottom: 32px;
+      max-width: 700px;
+    }
+    
+    .cta-group {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    
+    .btn-primary {
+      background: var(--accent);
+      color: var(--black);
+    }
+    
+    .btn-primary:hover {
+      background: var(--accent-dim);
+    }
+    
+    .btn-secondary {
+      border: 1px solid var(--zinc-700);
+      color: var(--zinc-300);
+    }
+    
+    .btn-secondary:hover {
+      border-color: var(--zinc-500);
+      color: var(--zinc-50);
+    }
+    
+    /* Stats Bar */
+    .stats {
+      border-top: 1px solid var(--zinc-800);
+      border-bottom: 1px solid var(--zinc-800);
+      padding: 48px 24px;
+    }
+    
+    .stats-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 48px;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    
+    .stat-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--zinc-300);
+      margin-bottom: 4px;
+    }
+    
+    .stat-detail {
+      font-size: 12px;
+      color: var(--zinc-600);
+    }
+    
+    /* Section */
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 24px;
+    }
+    
+    .section-alt {
+      background: var(--zinc-900);
+    }
+    
+    .section-header {
+      margin-bottom: 64px;
+    }
+    
+    h2 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--zinc-50);
+      margin-bottom: 12px;
+    }
+    
+    .section-desc {
+      font-size: 15px;
+      color: var(--zinc-500);
+      max-width: 600px;
+    }
+    
+    /* Projects */
+    .project {
+      position: relative;
+      padding: 48px 0;
+      border-bottom: 1px solid var(--zinc-800);
+    }
+    
+    .project:last-child {
+      border-bottom: none;
+    }
+    
+    .project-number {
+      position: absolute;
+      top: 48px;
+      left: -80px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 64px;
+      font-weight: 700;
+      color: var(--zinc-900);
+      line-height: 1;
+    }
+    
+    .project-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .project-title-group {
+      flex: 1;
+    }
+    
+    .project-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--zinc-50);
+      margin-bottom: 4px;
+    }
+    
+    .project-tagline {
+      font-size: 14px;
+      color: var(--zinc-500);
+    }
+    
+    .project-marker {
+      width: 48px;
+      height: 4px;
+      border-radius: 2px;
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+    
+    .project-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--zinc-400);
+      margin-bottom: 16px;
+    }
+    
+    .project-problem {
+      font-size: 13px;
+      color: var(--zinc-600);
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+    
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    
+    .tech-tag {
+      font-size: 11px;
+      padding: 6px 12px;
+      background: var(--zinc-800);
+      border: 1px solid var(--zinc-700);
+      border-radius: 4px;
+      color: var(--zinc-500);
+    }
+    
+    .project-highlights {
+      background: var(--zinc-900);
+      border: 1px solid var(--zinc-800);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    
+    .highlights-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--zinc-600);
+      margin-bottom: 16px;
+    }
+    
+    .highlights-list {
+      list-style: none;
+    }
+    
+    .highlight-item {
+      display: flex;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--zinc-500);
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    
+    .highlight-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .check-icon {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    .project-links {
+      display: flex;
+      gap: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--zinc-800);
+    }
+    
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--zinc-500);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    
+    .project-link:hover {
+      color: var(--accent);
+    }
+    
+    .project-link-primary {
+      color: var(--accent);
+      margin-left: auto;
+    }
+    
+    .project-link-primary:hover {
+      color: var(--zinc-50);
+    }
+    
+    /* Case Studies */
+    .case-studies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    
+    .case-study-card {
+      background: var(--zinc-900);
+      border: 1px solid var(--zinc-800);
+      border-radius: 12px;
+      padding: 32px;
+      text-decoration: none;
+      display: block;
+      transition: border-color 0.2s;
+    }
+    
+    .case-study-card:hover {
+      border-color: var(--zinc-600);
+    }
+    
+    .case-study-project {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    
+    .case-study-title {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--zinc-300);
+      margin-bottom: 20px;
+    }
+    
+    .case-study-card:hover .case-study-title {
+      color: var(--zinc-50);
+    }
+    
+    .case-study-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    
+    .case-tag {
+      font-size: 10px;
+      padding: 4px 10px;
+      background: var(--zinc-800);
+      border: 1px solid var(--zinc-700);
+      border-radius: 3px;
+      color: var(--zinc-500);
+    }
+    
+    .case-study-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    
+    /* AI Section */
+    .ai-capabilities {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .capability-card {
+      background: var(--zinc-900);
+      border: 1px solid var(--zinc-800);
+      border-radius: 8px;
+      padding: 32px;
+    }
+    
+    .capability-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--zinc-50);
+      margin-bottom: 12px;
+    }
+    
+    .capability-desc {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--zinc-400);
+      margin-bottom: 16px;
+    }
+    
+    .capability-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .capability-tag {
+      font-size: 10px;
+      padding: 5px 10px;
+      background: rgba(217, 120, 71, 0.1);
+      border: 1px solid rgba(217, 120, 71, 0.3);
+      border-radius: 4px;
+      color: var(--accent);
+    }
+    
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 48px;
+    }
+    
+    .skill-category-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    
+    .skill-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .skill-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--zinc-300);
+      margin-bottom: 2px;
+    }
+    
+    .skill-level {
+      font-size: 11px;
+      color: var(--zinc-600);
+    }
+    
+    /* Contact */
+    .contact {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .contact h2 {
+      margin-bottom: 16px;
+    }
+    
+    .contact-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--zinc-400);
+      margin-bottom: 32px;
+    }
+    
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+    
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--zinc-800);
+      padding: 48px 24px;
+      text-align: center;
+    }
+    
+    .footer-text {
+      font-size: 13px;
+      color: var(--zinc-600);
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 36px;
+      }
+      
+      h2 {
+        font-size: 24px;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .cta-group {
+        flex-direction: column;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+      
+      .project-number {
+        position: static;
+        font-size: 48px;
+        margin-bottom: 16px;
+      }
+      
+      .project-links {
+        flex-direction: column;
+        gap: 16px;
+      }
+      
+      .project-link-primary {
+        margin-left: 0;
+      }
+      
+      .contact-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="logo">TC</a>
+      <ul class="nav-links">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#case-studies">Case Studies</a></li>
+        <li><a href="#ai">AI</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <p class="label">Full Stack Developer</p>
+    <h1>I build products that <span class="accent">solve real problems</span> — with AI woven into every layer.</h1>
+    <p class="lead">3 years shipping production apps with Next.js, TypeScript, and Supabase. I use AI not as a gimmick, but as infrastructure — from multi-agent pipelines to RAG-powered search to computer vision extraction.</p>
+    <div class="cta-group">
+      <a href="#projects" class="btn btn-primary">See my work</a>
+      <a href="#contact" class="btn btn-secondary">Get in touch</a>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-value">3</div>
+        <div class="stat-label">Shipped products</div>
+        <div class="stat-detail">Live on Vercel</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">6</div>
+        <div class="stat-label">AI agents</div>
+        <div class="stat-detail">Running 24/7</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">1,425</div>
+        <div class="stat-label">AI-generated items</div>
+        <div class="stat-detail">3-step verified</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">RAG</div>
+        <div class="stat-label">Vector search</div>
+        <div class="stat-detail">pgvector + embeddings</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="section-header">
+      <h2>Projects</h2>
+      <p class="section-desc">Each project solves a real problem and uses AI meaningfully — not as a wrapper around an API call, but as core infrastructure.</p>
+    </div>
+
+    <div class="project">
+      <div class="project-number">01</div>
+      <div class="project-header">
+        <div class="project-title-group">
+          <h3 class="project-title">Split & Play</h3>
+          <p class="project-tagline">AI-powered practice companion for musicians</p>
+        </div>
+        <div class="project-marker" style="background: #8B5CF6;"></div>
+      </div>
+      <p class="project-desc">Upload a song, AI separates it into 7 stems (vocals, drums, bass, guitar, piano, other, click track), then practice with a real-time mixer, tempo/pitch control, and intelligent beat detection.</p>
+      <p class="project-problem">Problem: Musicians need to isolate instruments to learn parts, but existing tools are expensive or limited to basic separation.</p>
+      <div class="project-stack">
+        <span class="tech-tag">Next.js</span>
+        <span class="tech-tag">TypeScript</span>
+        <span class="tech-tag">Supabase</span>
+        <span class="tech-tag">Replicate</span>
+        <span class="tech-tag">Howler.js</span>
+        <span class="tech-tag">Tone.js</span>
+        <span class="tech-tag">Modal</span>
+      </div>
+      <div class="project-highlights">
+        <div class="highlights-label">Key implementation details</div>
+        <ul class="highlights-list">
+          <li class="highlight-item">
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="#D97847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>7-stem separation using Demucs AI model via Replicate</span>
+          </li>
+          <li class="highlight-item">
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="#D97847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Smart click track generated via Modal endpoint with librosa beat detection</span>
+          </li>
+          <li class="highlight-item">
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="#D97847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Real-time audio engine: tempo 0.25x–2x, pitch ±12 semitones</span>
+          </li>
+          <li class="highlight-item">
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="#D97847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>A-B looping, section markers, session tracking with CSV export</span>
+          </li>
+          <li class="highlight-item">
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="#D97847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Fire-and-forget architecture with frontend polling for Vercel compatibility</span>
+          </li>
+        </ul>
+      </div>
+      <div class="project-links">
+        <a href="https://part-master.vercel.app" class="project-link" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+            <path d="M15 3h6v6"/>
+            <path d="M10 14L21 3"/>
+          </svg>
+          Live demo
+        </a>
+        <a href="https://github.com/hroarr28/partMaster" class="project-link" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          Source code
+        </a>
+        <a href="/case-study/split-and-play" class="project-link project-link-primary">
+          Read case study
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-number">02</div>
+      <div class="project-header">
+        <div class="project-title-group">
+          <h3 class="project-title">PromptLens</h3>
+          <p class="project-tagline">Visual prompt engineering from design screenshots</p>
+        </div>
+        <div class="project-marker" style="background: #3B82F6;"></div>
+      </div>
+      <p class="project-desc">Upload design screenshots, Claude Vision extracts styles (colours, typography, spacing, layout) into structured data, then generates AI-ready prompts optimised for Cursor, Stitch, and Anima.</p>
+      <p class="project-problem">Problem: Developers spend 30+ minutes manually translating designs into code prompts. PromptLens does it in seconds with computer vision.</p>
+      <div class="project-stack">
+        <span class="tech-tag">Next.js</span>
+        <span class="tech-tag">TypeScript</span>
+        <span class="tech-tag">Supabase</span>
+        <span class="tech-tag">Claude Vision API</span>
+        <span class="tech-tag">Stripe</span>
+      </div>
+      <div class="project-highlights">
+        <div class="highlights-label">Key implementation details</div>
+        <ul class="highlights-list">
+          <li class="highlight-item">
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="#D97847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Claude Vision analyses screenshots as base64 (private URLs can't be fetched externally)</span>
+          </li>
+          <li class="highlight-item">
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="#D97847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Structured JSON extraction + natural language prompt in single API call</span>
+          </li>
+          <li class="highlight-item">
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="#D97847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Multi-tool export: Cursor, Stitch, Anima, Generic — each optimised for the target</span>
+          </li>
+          <li class="highlight-item">
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="#D97847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Public prompt library for community sharing</span>
+          </li>
+          <li class="highlight-item">
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="#D97847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Stripe billing with server-side usage enforcement</span>
+          </li>
+        </ul>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/hroarr28/promptlens" class="project-link" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          Source code
+        </a>
+        <a href="/case-study/promptlens" class="project-link project-link-primary">
+          Read case study
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-number">03</div>
+      <div class="project-header">
+        <div class="project-title-group">
+          <h3 class="project-title">Insight</h3>
+          <p class="project-tagline">RAG document search with vector embeddings</p>
+        </div>
+        <div class="project-marker" style="background: #10B981;"></div>
+      </div>
+      <p class="project-desc">Upload documents (PDF, TXT, MD), they're chunked and embedded with OpenAI text-embedding-3-small, stored in Supabase pgvector, then searched via cosine similarity to ground AI responses in your actual content.</p>
+      <p class="project-problem">Problem: Generic AI chat hallucinates. Insight constrains answers to your uploaded documents with source citations.</p>
+      <div class="project-stack">
+        <span class="tech-tag">Next.js</span>
+        <span class="tech-tag">TypeScript</span>
+        <span class="tech-tag">Supabase pgvector</span>
+        <span class="tech-tag">OpenAI</span>
+        <span class="tech-tag">Vercel AI SDK</span>
+      </div>
+      <div class="project-highlights">
+        <div class="highlights-label">Key implementation details</div>
+        <ul class="highlights-list">
+          <li class="highlight-item">
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="#D97847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Full RAG pipeline: chunk → embed → store → retrieve → generate</span>
+          </li>
+          <li class="highlight-item">
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="#D97847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>pgvector IVFFlat index with cosine distance search</span>
+          </li>
+          <li class="highlight-item">
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="#D97847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Streaming responses with [Source N] citation notation</span>
+          </li>
+          <li class="highlight-item">
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="#D97847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Expandable source cards showing matched passages and similarity scores</span>
+          </li>
+          <li class="highlight-item">
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="#D97847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Intelligent chunking: 500 tokens with 50-token overlap on paragraph boundaries</span>
+          </li>
+        </ul>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/hroarr28/insight" class="project-link" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          Source code
+        </a>
+        <a href="/case-study/insight" class="project-link project-link-primary">
+          Read case study
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies -->
+  <section id="case-studies" class="section-alt">
+    <div class="section-header">
+      <h2>Case Studies</h2>
+      <p class="section-desc">Deep dives into the architecture decisions, trade-offs, and challenges behind each project. Not just what I built — why I built it that way.</p>
+    </div>
+    <div class="case-studies-grid">
+      <a href="/case-study/split-and-play" class="case-study-card">
+        <p class="case-study-project">Split & Play</p>
+        <h3 class="case-study-title">Building a real-time audio engine with 7-stem AI separation</h3>
+        <div class="case-study-tags">
+          <span class="case-tag">Replicate API</span>
+          <span class="case-tag">Howler.js</span>
+          <span class="case-tag">Tone.js</span>
+          <span class="case-tag">Fire-and-forget polling</span>
+        </div>
+        <p class="case-study-link">
+          Read more
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </p>
+      </a>
+      <a href="/case-study/promptlens" class="case-study-card">
+        <p class="case-study-project">PromptLens</p>
+        <h3 class="case-study-title">Computer vision extraction to structured AI prompts</h3>
+        <div class="case-study-tags">
+          <span class="case-tag">Claude Vision</span>
+          <span class="case-tag">Base64 encoding</span>
+          <span class="case-tag">Multi-tool export</span>
+        </div>
+        <p class="case-study-link">
+          Read more
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </p>
+      </a>
+      <a href="/case-study/insight" class="case-study-card">
+        <p class="case-study-project">Insight</p>
+        <h3 class="case-study-title">RAG pipeline: from PDF upload to cited AI answers</h3>
+        <div class="case-study-tags">
+          <span class="case-tag">pgvector</span>
+          <span class="case-tag">OpenAI embeddings</span>
+          <span class="case-tag">Streaming responses</span>
+        </div>
+        <p class="case-study-link">
+          Read more
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </p>
+      </a>
+    </div>
+  </section>
+
+  <!-- AI Section -->
+  <section id="ai">
+    <div class="section-header">
+      <h2>How I use AI</h2>
+      <p class="section-desc">Beyond API calls and chatbot wrappers. I build AI into product infrastructure — from vector search to multi-agent systems to computer vision pipelines.</p>
+    </div>
+    <div class="ai-capabilities">
+      <div class="capability-card">
+        <h3 class="capability-title">Multi-agent orchestration</h3>
+        <p class="capability-desc">I run 6 specialised AI agents on a Mac Mini M4 Pro — each handles a different domain (research, design, marketing, development, client services). They share context, delegate tasks to each other, and run scheduled jobs autonomously. Not a toy setup: these agents deploy code, write database migrations, and generate production content.</p>
+        <div class="capability-tags">
+          <span class="capability-tag">OpenClaw</span>
+          <span class="capability-tag">Sonnet</span>
+          <span class="capability-tag">Opus</span>
+          <span class="capability-tag">Cron scheduling</span>
+        </div>
+      </div>
+      <div class="capability-card">
+        <h3 class="capability-title">RAG architecture</h3>
+        <p class="capability-desc">Built a full retrieval-augmented generation pipeline for Insight: document ingestion, intelligent chunking with paragraph-boundary splitting, vector embeddings via OpenAI text-embedding-3-small, pgvector cosine similarity search, and grounded AI responses with source citations. Understands when to say "I don't know" instead of hallucinating.</p>
+        <div class="capability-tags">
+          <span class="capability-tag">pgvector</span>
+          <span class="capability-tag">OpenAI embeddings</span>
+          <span class="capability-tag">Cosine similarity</span>
+          <span class="capability-tag">Streaming</span>
+        </div>
+      </div>
+      <div class="capability-card">
+        <h3 class="capability-title">Computer vision extraction</h3>
+        <p class="capability-desc">PromptLens sends design screenshots to Claude Vision as base64 (Supabase signed URLs can't be fetched externally), extracts structured style data (colours, typography, spacing, borders, shadows, layout patterns), and generates tool-specific prompts. One API call, structured JSON output plus natural language prompt.</p>
+        <div class="capability-tags">
+          <span class="capability-tag">Claude Vision</span>
+          <span class="capability-tag">Base64</span>
+          <span class="capability-tag">Structured extraction</span>
+        </div>
+      </div>
+      <div class="capability-card">
+        <h3 class="capability-title">AI content pipelines</h3>
+        <p class="capability-desc">Generated 1,425 curriculum-aligned exam questions using a 3-step pipeline: Ollama generates base questions locally (free), then generates SEND-adapted variants for 4 learning profiles, then Claude reviews every question for accuracy. Each question verified against the National Curriculum. Total API cost: under £5.</p>
+        <div class="capability-tags">
+          <span class="capability-tag">Ollama</span>
+          <span class="capability-tag">Claude</span>
+          <span class="capability-tag">Batch processing</span>
+          <span class="capability-tag">Quality assurance</span>
+        </div>
+      </div>
+      <div class="capability-card">
+        <h3 class="capability-title">Daily AI development tools</h3>
+        <p class="capability-desc">Cursor for code completion, Claude for architecture decisions and debugging, ChatGPT for quick research. AI isn't a novelty — it's how I ship multiple production apps while working a full-time job. I know when to lean on AI and when to write it myself.</p>
+        <div class="capability-tags">
+          <span class="capability-tag">Cursor</span>
+          <span class="capability-tag">Claude</span>
+          <span class="capability-tag">ChatGPT</span>
+          <span class="capability-tag">Prompt engineering</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section-alt">
+    <div class="section-header">
+      <h2>Skills</h2>
+      <p class="section-desc">Grouped by category, with honest context on experience level.</p>
+    </div>
+    <div class="skills-grid">
+      <div>
+        <h3 class="skill-category-title">Frontend</h3>
+        <div class="skill-list">
+          <div>
+            <div class="skill-name">React / Next.js</div>
+            <div class="skill-level">Daily, 3 years</div>
+          </div>
+          <div>
+            <div class="skill-name">TypeScript</div>
+            <div class="skill-level">Strict mode, daily</div>
+          </div>
+          <div>
+            <div class="skill-name">Tailwind CSS</div>
+            <div class="skill-level">Daily</div>
+          </div>
+          <div>
+            <div class="skill-name">HTML / CSS</div>
+            <div class="skill-level">3 years</div>
+          </div>
+          <div>
+            <div class="skill-name">React Native</div>
+            <div class="skill-level">Learning</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 class="skill-category-title">Backend & Data</h3>
+        <div class="skill-list">
+          <div>
+            <div class="skill-name">Supabase / PostgreSQL</div>
+            <div class="skill-level">4 production apps</div>
+          </div>
+          <div>
+            <div class="skill-name">REST APIs</div>
+            <div class="skill-level">Daily</div>
+          </div>
+          <div>
+            <div class="skill-name">Stripe</div>
+            <div class="skill-level">3 integrations</div>
+          </div>
+          <div>
+            <div class="skill-name">Payload CMS</div>
+            <div class="skill-level">Professional</div>
+          </div>
+          <div>
+            <div class="skill-name">Node.js</div>
+            <div class="skill-level">3 years</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 class="skill-category-title">AI & ML Integration</h3>
+        <div class="skill-list">
+          <div>
+            <div class="skill-name">Claude API / Vision</div>
+            <div class="skill-level">2 production apps</div>
+          </div>
+          <div>
+            <div class="skill-name">OpenAI API / Embeddings</div>
+            <div class="skill-level">RAG pipeline</div>
+          </div>
+          <div>
+            <div class="skill-name">Ollama (local models)</div>
+            <div class="skill-level">Content generation</div>
+          </div>
+          <div>
+            <div class="skill-name">Replicate / Modal</div>
+            <div class="skill-level">ML model deployment</div>
+          </div>
+          <div>
+            <div class="skill-name">Prompt engineering</div>
+            <div class="skill-level">Daily</div>
+          </div>
+          <div>
+            <div class="skill-name">RAG / pgvector</div>
+            <div class="skill-level">Full pipeline built</div>
+          </div>
+          <div>
+            <div class="skill-name">Multi-agent systems</div>
+            <div class="skill-level">6 agents, 24/7</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 class="skill-category-title">Infrastructure</h3>
+        <div class="skill-list">
+          <div>
+            <div class="skill-name">Vercel</div>
+            <div class="skill-level">All projects</div>
+          </div>
+          <div>
+            <div class="skill-name">Git / GitHub</div>
+            <div class="skill-level">Daily</div>
+          </div>
+          <div>
+            <div class="skill-name">Docker</div>
+            <div class="skill-level">Dev environments</div>
+          </div>
+          <div>
+            <div class="skill-name">CI/CD</div>
+            <div class="skill-level">GitHub Actions</div>
+          </div>
+          <div>
+            <div class="skill-name">PWAs</div>
+            <div class="skill-level">2 production apps</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <h2>Get in touch</h2>
+    <p class="contact-desc">I'm open to hybrid developer roles in the UK Midlands area and freelance projects. Particularly interested in companies using AI as part of their development workflow.</p>
+    <div class="contact-buttons">
+      <a href="mailto:thcuk1@hotmail.co.uk" class="btn btn-primary">Email me</a>
+      <a href="https://github.com/hroarr28" target="_blank" class="btn btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+        </svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/tom-chamberlin" target="_blank" class="btn btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        LinkedIn
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p class="footer-text">&copy; 2025 Tom Chamberlin. Built with Next.js and deployed on Vercel.</p>
+  </footer>
+</body>
+</html>
