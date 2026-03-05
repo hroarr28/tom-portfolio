@@ -82,6 +82,25 @@ const projects = [
   },
   {
     number: "04",
+    title: "Invoice Pilot",
+    tagline: "Zero-friction invoicing for freelancers",
+    description:
+      "Create professional invoices in 60 seconds — no signup required. Live split-pane preview, PDF download, Stripe-powered Pro tier with recurring billing and late payment reminders. Freemium model with server-side subscription enforcement via Supabase RLS.",
+    metrics: "60s to first invoice · 2-day build · freemium with Stripe billing",
+    stack: ["Next.js", "TypeScript", "Supabase", "Stripe", "Tailwind CSS"],
+    highlights: [
+      "Zero-signup onboarding: full invoice creation without authentication",
+      "Live preview: instant re-render on every field change, no API calls",
+      "Print-based PDF: server-rendered HTML + window.print(), zero heavy dependencies",
+      "Stripe webhooks + Supabase RLS for tamper-proof subscription gating",
+    ],
+    url: "https://invoicepilot.swiftlabs.dev",
+    github: "https://github.com/hroarr28/swiftlabs-invoicepilot",
+    caseStudy: "/case-study/invoice-pilot",
+    colour: "#F97316",
+  },
+  {
+    number: "05",
     title: "SwiftLabs",
     tagline: "Autonomous product engine \u2014 my key differentiator",
     description:
