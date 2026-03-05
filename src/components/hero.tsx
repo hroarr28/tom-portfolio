@@ -2,18 +2,17 @@ export function Hero() {
   return (
     <section className="max-w-[900px] mx-auto px-6 pt-40 pb-20">
       <p className="font-mono text-[11px] font-bold tracking-[0.1em] uppercase text-accent mb-4">
-        Full Stack Developer
+        Senior Full-Stack Developer
       </p>
       <h1 className="font-mono text-4xl sm:text-5xl font-bold leading-[1.15] text-zinc-50 mb-6">
-        I build products that{" "}
-        <span className="text-accent">solve real problems</span> — with AI
-        woven into every layer.
+        I ship AI-powered products{" "}
+        <span className="text-accent">that people actually use.</span>
       </h1>
       <p className="text-lg leading-[1.7] text-zinc-400 mb-8 max-w-[700px]">
-        3 years shipping production apps with Next.js, TypeScript, and
-        Supabase. I use AI not as a gimmick, but as infrastructure — from
-        multi-agent pipelines to RAG-powered search to computer vision
-        extraction.
+        3 years building production applications with Next.js, TypeScript, and
+        React. I&apos;ve shipped 5 SaaS products with 1,200+ active users, plus I
+        run a 6-agent system that deploys code autonomously. I architect AI as
+        core infrastructure that delivers measurable business value.
       </p>
       <div className="flex flex-col sm:flex-row gap-3">
         <a

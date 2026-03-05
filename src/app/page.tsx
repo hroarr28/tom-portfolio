@@ -2,7 +2,7 @@ import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
 import { Stats } from "@/components/stats";
 import { Projects } from "@/components/projects";
-import { CaseStudyPreview } from "@/components/case-study-preview";
+import { Experience } from "@/components/experience";
 import { AISection } from "@/components/ai-section";
 import { Skills } from "@/components/skills";
 import { Contact } from "@/components/contact";
@@ -16,7 +16,7 @@ export default function Home() {
         <Hero />
         <Stats />
         <Projects />
-        <CaseStudyPreview />
+        <Experience />
         <AISection />
         <Skills />
         <Contact />

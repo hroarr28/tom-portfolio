@@ -1,8 +1,8 @@
 const stats = [
-  { value: "3", label: "Shipped products", detail: "Live on Vercel" },
-  { value: "6", label: "AI agents", detail: "Running 24/7" },
-  { value: "1,425", label: "AI-generated items", detail: "3-step verified" },
-  { value: "RAG", label: "Vector search", detail: "pgvector + embeddings" },
+  { value: "5", label: "Shipped products", detail: "Live and deployed" },
+  { value: "1,200+", label: "Active users", detail: "Across all products" },
+  { value: "6", label: "AI agents", detail: "Running 24/7 autonomously" },
+  { value: "3", label: "Years commercial", detail: "React / Next.js / TypeScript" },
 ];
 
 export function Stats() {

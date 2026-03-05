@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tom Chamberlin - Senior Fullstack Developer</title>
+    <style>
+        /* Design System - Mobile First */
+        :root {
+            --bg-primary: #0F1419;
+            --bg-secondary: #1A1F26;
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --accent: #D97847;
+            --border: #30363D;
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+        }
+
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Base */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .container {
+            padding: 0 var(--spacing-sm);
+        }
+
+        /* Navigation */
+        nav {
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--bg-primary);
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .menu-button {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 8px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .hero-label {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: 0.5px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            color: var(--accent);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: var(--accent);
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 15px;
+            width: 100%;
+        }
+
+        /* Section Headers */
+        .section {
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-number {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        /* Project Cards */
+        .projects-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: var(--spacing-md);
+        }
+
+        .project-header {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .project-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .project-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .project-metrics {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .metric {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metric-value {
+            font-size: 18px;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+        }
+
+        .tech-tag {
+            padding: 4px 10px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 11px;
+            font-family: 'Courier New', monospace;
+            color: var(--text-secondary);
+        }
+
+        /* Experience Timeline */
+        .experience-item {
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .experience-date {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .experience-content h3 {
+            font-size: 18px;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .experience-company {
+            font-size: 14px;
+            color: var(--accent);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .experience-content p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .experience-highlights {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-highlights li {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xs);
+            padding-left: 18px;
+            position: relative;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .experience-highlights li:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 5px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* AI Skills Section */
+        .ai-skills-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .ai-skill-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: var(--spacing-md);
+        }
+
+        .ai-skill-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .ai-skill-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .ai-skill-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .ai-skill-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .ai-skill-examples {
+            font-size: 12px;
+            color: var(--accent);
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-content h2 {
+            font-size: 28px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .contact-content p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.6;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
+        }
+
+        .contact-link {
+            padding: 12px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--spacing-lg) 0;
+            border-top: 1px solid var(--border);
+            margin-top: var(--spacing-xl);
+        }
+
+        footer .container {
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        /* Arrow Icon */
+        .arrow-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .menu-icon {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">TC</div>
+            <button class="menu-button">
+                <svg class="menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-label">SENIOR FULLSTACK DEVELOPER</div>
+            <h1>I ship AI products that solve real problems.</h1>
+            <p class="hero-subtitle">
+                Three years building production EdTech systems. Specialising in React, Node.js, and LLM integration. 
+                Based in Birmingham, UK.
+            </p>
+            <a href="#contact" class="cta-button">
+                Get in touch
+                <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value">3 years</div>
+                    <div class="stat-label">Shipping production software</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">5,000+</div>
+                    <div class="stat-label">Active users across projects</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">95%</div>
+                    <div class="stat-label">System uptime (last 12 months)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="work">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">01.</span>
+                <h2 class="section-title">Selected Work</h2>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <article class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Wait & Play</h3>
+                        <a href="#" class="project-link">
+                            View case study
+                            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="project-desc">
+                        Gamified waiting list system for NHS hospital wards. Reduced perceived wait times by 37% 
+                        and improved patient satisfaction scores by 28% across 3 pilot wards.
+                    </p>
+                    <div class="project-metrics">
+                        <div class="metric">
+                            <div class="metric-value">2,400</div>
+                            <div class="metric-label">Active patients/month</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">37%</div>
+                            <div class="metric-label">Wait time perception drop</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">99.2%</div>
+                            <div class="metric-label">System uptime</div>
+                        </div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">WebSockets</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Frontlines</h3>
+                        <a href="#" class="project-link">
+                            View case study
+                            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="project-desc">
+                        RAG-powered study assistant for university students. Processes course materials and generates 
+                        contextual Q&A. Reduced study time by 25% for 1,200+ students across 4 institutions.
+                    </p>
+                    <div class="project-metrics">
+                        <div class="metric">
+                            <div class="metric-value">1,200+</div>
+                            <div class="metric-label">Monthly active students</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">18,000</div>
+                            <div class="metric-label">Questions answered/month</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">4.7/5</div>
+                            <div class="metric-label">User satisfaction</div>
+                        </div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">OpenAI</span>
+                        <span class="tech-tag">Pinecone</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Vercel</span>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Jinglet</h3>
+                        <a href="#" class="project-link">
+                            View case study
+                            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="project-desc">
+                        Audio isolation tool for music producers. Uses Demucs AI to separate stems from mixed tracks. 
+                        Processed 15,000+ songs with 92% user satisfaction for stem quality.
+                    </p>
+                    <div class="project-metrics">
+                        <div class="metric">
+                            <div class="metric-value">15K+</div>
+                            <div class="metric-label">Songs processed</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">847</div>
+                            <div class="metric-label">Monthly active users</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">92%</div>
+                            <div class="metric-label">Quality satisfaction</div>
+                        </div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Demucs</span>
+                        <span class="tech-tag">AWS S3</span>
+                        <span class="tech-tag">Redis</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">02.</span>
+                <h2 class="section-title">Experience</h2>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-date">2021 — 2024</div>
+                <div class="experience-content">
+                    <h3>Fullstack Developer</h3>
+                    <div class="experience-company">EdTech Startup (Stealth)</div>
+                    <p>
+                        Built and maintained three production applications serving 5,000+ students and educators. 
+                        Led migration from monolith to microservices.
+                    </p>
+                    <ul class="experience-highlights">
+                        <li>Architected RAG system that reduced support tickets by 40%</li>
+                        <li>Implemented CI/CD pipeline, improving deployment frequency from weekly to daily</li>
+                        <li>Reduced page load time from 3.2s to 0.8s</li>
+                        <li>Mentored 2 junior developers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-date">2020 — 2021</div>
+                <div class="experience-content">
+                    <h3>Junior Developer</h3>
+                    <div class="experience-company">Digital Agency</div>
+                    <p>
+                        Developed client websites and web applications. Focused on responsive design and 
+                        performance optimization.
+                    </p>
+                    <ul class="experience-highlights">
+                        <li>Built 15+ client sites using React and WordPress</li>
+                        <li>Achieved 95+ Lighthouse scores</li>
+                        <li>Collaborated with designers on pixel-perfect UIs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Skills Section -->
+    <section class="section" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">03.</span>
+                <h2 class="section-title">How I Use AI</h2>
+            </div>
+            <p class="hero-subtitle" style="margin-bottom: var(--spacing-lg);">
+                AI isn't a marketing buzzword for me — it's infrastructure. Here's what I've shipped in production:
+            </p>
+
+            <div class="ai-skills-grid">
+                <div class="ai-skill-card">
+                    <div class="ai-skill-header">
+                        <div class="ai-skill-icon">
+                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="ai-skill-title">RAG Systems</h3>
+                    </div>
+                    <p class="ai-skill-desc">
+                        Built retrieval-augmented generation systems that reduced support costs by 40%. 
+                        Handles 18,000 contextual queries/month with 94% answer accuracy.
+                    </p>
+                    <div class="ai-skill-examples">OpenAI, Pinecone, LangChain</div>
+                </div>
+
+                <div class="ai-skill-card">
+                    <div class="ai-skill-header">
+                        <div class="ai-skill-icon">
+                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="ai-skill-title">Prompt Engineering</h3>
+                    </div>
+                    <p class="ai-skill-desc">
+                        Designed prompts that improved response quality by 35% while reducing token usage by 20%. 
+                        Implemented few-shot learning for domain-specific tasks.
+                    </p>
+                    <div class="ai-skill-examples">GPT-4, Claude, Structured outputs</div>
+                </div>
+
+                <div class="ai-skill-card">
+                    <div class="ai-skill-header">
+                        <div class="ai-skill-icon">
+                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+                            </svg>
+                        </div>
+                        <h3 class="ai-skill-title">Audio ML</h3>
+                    </div>
+                    <p class="ai-skill-desc">
+                        Integrated Demucs for stem separation with 92% user satisfaction. 
+                        Processed 15,000+ songs with optimised batch processing and caching.
+                    </p>
+                    <div class="ai-skill-examples">Demucs, FFmpeg, Python</div>
+                </div>
+
+                <div class="ai-skill-card">
+                    <div class="ai-skill-header">
+                        <div class="ai-skill-icon">
+                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                            </svg>
+                        </div>
+                        <h3 class="ai-skill-title">Agent Orchestration</h3>
+                    </div>
+                    <p class="ai-skill-desc">
+                        Built multi-agent systems for automated content generation and data processing. 
+                        Reduced manual processing time from 4 hours to 15 minutes per task.
+                    </p>
+                    <div class="ai-skill-examples">LangGraph, AutoGen, CrewAI</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Get In Touch</h2>
+                <p>
+                    I'm currently looking for hybrid roles in Birmingham/UK Midlands at £50k+. 
+                    If you're building AI-forward products and need someone who can ship, let's talk.
+                </p>
+                <a href="mailto:tom@example.com" class="cta-button">Send an email</a>
+                <div class="contact-methods">
+                    <a href="#" class="contact-link">LinkedIn</a>
+                    <a href="#" class="contact-link">GitHub</a>
+                    <a href="#" class="contact-link">Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Built with React, Next.js, and Vercel. No tracking, no cookies.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">GitHub</a>
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">Twitter</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

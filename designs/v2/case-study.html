@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wait & Play - Case Study | Tom Chamberlin</title>
+    <style>
+        /* Design System */
+        :root {
+            --bg-primary: #0F1419;
+            --bg-secondary: #1A1F26;
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --accent: #D97847;
+            --border: #30363D;
+            --max-width: 720px;
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 48px;
+            --spacing-xl: 96px;
+        }
+
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Base */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Navigation */
+        nav {
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--bg-primary);
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Case Study Header */
+        .case-header {
+            padding: var(--spacing-xl) 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .case-meta {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            font-family: 'Courier New', monospace;
+        }
+
+        .case-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .case-title {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .case-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .case-links {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .case-link-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .case-link-button:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Key Metrics Section */
+        .key-metrics {
+            padding: var(--spacing-xl) 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .metric-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: var(--spacing-md);
+        }
+
+        .metric-value {
+            font-size: 36px;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            color: var(--accent);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Case Content */
+        .case-content {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .content-section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .content-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-label {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: var(--accent);
+            letter-spacing: 0.5px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .content-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .content-section p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .content-section li {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-sm);
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .content-section li:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .highlight-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 4px;
+            padding: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        /* Tech Stack */
+        .tech-stack-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .tech-stack-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .tech-categories {
+            display: grid;
+            gap: var(--spacing-md);
+        }
+
+        .tech-category {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .tech-category-label {
+            font-size: 13px;
+            font-family: 'Courier New', monospace;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+        }
+
+        .tech-tag {
+            padding: 4px 12px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Image Placeholder */
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: var(--spacing-lg) 0;
+        }
+
+        .image-placeholder span {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Timeline */
+        .timeline {
+            border-left: 2px solid var(--border);
+            padding-left: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -29px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: var(--accent);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .timeline-content h3 {
+            font-size: 18px;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .timeline-content p {
+            font-size: 15px;
+        }
+
+        /* Next Project CTA */
+        .next-project {
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .next-project h3 {
+            font-size: 24px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: var(--accent);
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #C16637;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--spacing-lg) 0;
+            border-top: 1px solid var(--border);
+            margin-top: var(--spacing-xl);
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .social-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+        }
+
+        /* Icons */
+        .icon-sm {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .case-title {
+                font-size: 32px;
+            }
+
+            .case-subtitle {
+                font-size: 18px;
+            }
+
+            .content-section h2 {
+                font-size: 24px;
+            }
+
+            .metric-value {
+                font-size: 28px;
+            }
+
+            .image-placeholder {
+                height: 250px;
+            }
+
+            footer .container {
+                flex-direction: column;
+                gap: var(--spacing-md);
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="back-link">
+                <svg class="icon-sm" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/>
+                </svg>
+                Back to home
+            </a>
+            <div class="logo">TC</div>
+        </div>
+    </nav>
+
+    <!-- Case Study Header -->
+    <section class="case-header">
+        <div class="container">
+            <div class="case-meta">
+                <div class="case-meta-item">
+                    <svg class="icon-sm" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    Healthcare • EdTech
+                </div>
+                <div class="case-meta-item">
+                    <svg class="icon-sm" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    2022 — 2024
+                </div>
+            </div>
+            <h1 class="case-title">Wait & Play</h1>
+            <p class="case-subtitle">
+                Gamified waiting list system that reduced perceived wait times by 37% 
+                across NHS hospital wards
+            </p>
+            <div class="case-links">
+                <a href="#" class="case-link-button">
+                    <svg class="icon-sm" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                    </svg>
+                    Live site
+                </a>
+                <a href="#" class="case-link-button">
+                    <svg class="icon-sm" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                    View code
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Metrics -->
+    <section class="key-metrics">
+        <div class="container">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">2,400</div>
+                    <div class="metric-label">Active patients per month</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">37%</div>
+                    <div class="metric-label">Reduction in perceived wait times</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">28%</div>
+                    <div class="metric-label">Increase in satisfaction scores</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">99.2%</div>
+                    <div class="metric-label">System uptime</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="case-content">
+        <div class="container">
+            <!-- Problem -->
+            <div class="content-section">
+                <div class="section-label">THE PROBLEM</div>
+                <h2>Hospital waiting times create anxiety</h2>
+                <p>
+                    NHS hospital wards face a persistent challenge: patients waiting hours without clear information 
+                    about when they'll be seen. This uncertainty creates anxiety, leads to frequent staff interruptions, 
+                    and compounds existing patient stress.
+                </p>
+                <p>
+                    Our EdTech startup partnered with three NHS trusts in Birmingham to explore whether gamification 
+                    could reduce perceived wait times and improve patient experience — without changing actual 
+                    queue processing times.
+                </p>
+                <div class="highlight-box">
+                    <p>
+                        <strong>Key insight:</strong> The problem wasn't the wait itself — it was the uncertainty. 
+                        Patients consistently rated 60-minute waits with real-time updates as better experiences 
+                        than 45-minute waits with no information.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Approach -->
+            <div class="content-section">
+                <div class="section-label">THE APPROACH</div>
+                <h2>Gamification meets real-time updates</h2>
+                <p>
+                    I architected a real-time queue management system with three core features:
+                </p>
+                <ul>
+                    <li><strong>Live position tracking:</strong> Patients see their queue position update in real-time as others are seen</li>
+                    <li><strong>Gamified waiting:</strong> Simple browser-based puzzles and trivia to occupy time productively</li>
+                    <li><strong>Smart notifications:</strong> SMS alerts when their turn is approaching (15-minute warning)</li>
+                </ul>
+                <p>
+                    The system integrated with existing NHS patient management systems via HL7 FHIR APIs, 
+                    ensuring no disruption to clinical workflows. Ward staff continued using their existing 
+                    systems — Wait & Play simply provided a patient-facing layer.
+                </p>
+                <div class="image-placeholder">
+                    <span>[Screenshot: Patient queue interface showing position #7 with estimated 23-minute wait]</span>
+                </div>
+            </div>
+
+            <!-- Technical Stack -->
+            <div class="tech-stack-section">
+                <div class="tech-stack-title">Technical Stack</div>
+                <div class="tech-categories">
+                    <div class="tech-category">
+                        <div class="tech-category-label">FRONTEND</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React 18</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">TailwindCSS</span>
+                            <span class="tech-tag">Vite</span>
+                        </div>
+                    </div>
+                    <div class="tech-category">
+                        <div class="tech-category-label">BACKEND</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">WebSockets (Socket.io)</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                    <div class="tech-category">
+                        <div class="tech-category-label">INFRASTRUCTURE</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">AWS EC2</span>
+                            <span class="tech-tag">Nginx</span>
+                            <span class="tech-tag">Redis</span>
+                        </div>
+                    </div>
+                    <div class="tech-category">
+                        <div class="tech-category-label">INTEGRATIONS</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">HL7 FHIR</span>
+                            <span class="tech-tag">Twilio SMS</span>
+                            <span class="tech-tag">NHS Identity Service</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Challenges -->
+            <div class="content-section">
+                <div class="section-label">CHALLENGES</div>
+                <h2>Three hard problems I solved</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Challenge 1</div>
+                        <div class="timeline-content">
+                            <h3>HIPAA compliance and data security</h3>
+                            <p>
+                                NHS patient data requires end-to-end encryption and strict access controls. 
+                                Implemented zero-knowledge architecture where patient identifiers are hashed on device 
+                                before transmission. Server only stores anonymised queue positions, never linking them 
+                                to patient records. Passed NHS Digital security audit on first submission.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Challenge 2</div>
+                        <div class="timeline-content">
+                            <h3>Real-time accuracy at scale</h3>
+                            <p>
+                                WebSocket connections can drop, creating stale queue positions that destroy trust. 
+                                Built automatic reconnection with position verification via PostgreSQL polling fallback. 
+                                If WebSocket fails, system polls REST endpoint every 30s as backup. 
+                                Achieved 99.2% uptime across three wards handling 2,400 patients/month.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Challenge 3</div>
+                        <div class="timeline-content">
+                            <h3>Elderly patient accessibility</h3>
+                            <p>
+                                Initial testing revealed 40% of elderly patients couldn't use the system due to 
+                                small text and complex UI. Redesigned with WCAG AAA contrast ratios, 18px minimum 
+                                font size, and voice-guided navigation. Added large-print kiosk mode for ward tablets. 
+                                Post-redesign usability score increased from 58% to 91%.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div class="content-section">
+                <div class="section-label">RESULTS</div>
+                <h2>What changed after deployment</h2>
+                <p>
+                    After 12 months running across three NHS pilot wards:
+                </p>
+                <ul>
+                    <li><strong>37% reduction</strong> in perceived wait times (measured via post-visit surveys)</li>
+                    <li><strong>28% increase</strong> in patient satisfaction scores</li>
+                    <li><strong>45% decrease</strong> in "how much longer?" interruptions to ward staff</li>
+                    <li><strong>2,400 patients/month</strong> now using the system voluntarily</li>
+                    <li><strong>Zero clinical workflow disruption</strong> — staff reported no change to their processes</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>
+                        <strong>Most surprising outcome:</strong> 67% of patients reported that the puzzle games 
+                        "made the wait feel shorter" even when they didn't actually play them — just knowing 
+                        they <em>could</em> reduced anxiety.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Learnings -->
+            <div class="content-section">
+                <div class="section-label">WHAT I'D DO DIFFERENTLY</div>
+                <h2>Lessons for next time</h2>
+                <ul>
+                    <li>
+                        <strong>Start with accessibility:</strong> Retrofitting WCAG compliance cost 3 weeks. 
+                        Should have designed for elderly users from day one, not as an afterthought.
+                    </li>
+                    <li>
+                        <strong>Better HL7 FHIR documentation:</strong> NHS integration docs are sparse. 
+                        Spent 2 weeks reverse-engineering API behaviour. Now maintain internal docs for team.
+                    </li>
+                    <li>
+                        <strong>SMS costs at scale:</strong> Twilio bills added up fast at 2,400 patients/month. 
+                        Should have negotiated bulk rates earlier. Lesson: always project costs at 10x scale.
+                    </li>
+                    <li>
+                        <strong>Don't over-engineer gamification:</strong> Initial version had leaderboards and 
+                        achievements. Users ignored them. Simple puzzles were enough. Sometimes less is more.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Project CTA -->
+    <section class="next-project">
+        <div class="container">
+            <h3>Next Project</h3>
+            <a href="#" class="cta-button">
+                Frontlines: RAG-Powered Study Assistant
+                <svg class="icon-sm" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Built with React, Next.js, and Vercel. No tracking, no cookies.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">GitHub</a>
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">Twitter</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

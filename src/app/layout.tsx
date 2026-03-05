@@ -17,9 +17,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Tom Chamberlin — Full Stack Developer",
+  title: "Tom Chamberlin — Senior Full-Stack Developer",
   description:
-    "Full stack developer building AI-powered products with Next.js, React, TypeScript, and Supabase. Based in the UK.",
+    "Senior full-stack developer shipping AI-powered products with Next.js, TypeScript, and Supabase. 5 production SaaS apps, 1,200+ users, 6-agent AI system. Based in the UK Midlands.",
   keywords: [
     "Next.js developer",
     "React developer",
@@ -32,9 +32,9 @@ export const metadata: Metadata = {
     "vector embeddings",
   ],
   openGraph: {
-    title: "Tom Chamberlin — Full Stack Developer",
+    title: "Tom Chamberlin — Senior Full-Stack Developer",
     description:
-      "Full stack developer building AI-powered products with Next.js, React, TypeScript, and Supabase.",
+      "Senior full-stack developer shipping AI-powered products. 5 SaaS apps, 1,200+ users, multi-agent AI system.",
     type: "website",
   },
 };

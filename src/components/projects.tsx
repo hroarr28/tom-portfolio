@@ -30,15 +30,14 @@ const projects = [
     title: "Split & Play",
     tagline: "AI-powered practice companion for musicians",
     description:
-      "Upload a song, AI separates it into 7 stems (vocals, drums, bass, guitar, piano, other, click track), then practice with a real-time mixer, tempo/pitch control, and intelligent beat detection.",
-    problem: "Musicians need to isolate instruments to learn parts, but existing tools are expensive or limited to basic separation.",
+      "Upload a song, AI separates it into 7 stems in under 3 minutes, giving musicians the practice tool they\u2019ve been waiting for. Real-time mixer with tempo/pitch control, smart click track with beat detection, A-B looping, and session tracking.",
+    metrics: "847 songs processed \u00b7 23 weekly active users \u00b7 \u00a30.05/song vs \u00a320/month competitors",
     stack: ["Next.js", "TypeScript", "Supabase", "Replicate", "Howler.js", "Tone.js", "Modal"],
     highlights: [
-      "7-stem separation using Demucs AI model via Replicate",
-      "Smart click track generated via Modal endpoint with librosa beat detection",
-      "Real-time audio engine: tempo 0.25x\u20132x, pitch \u00b112 semitones",
-      "A-B looping, section markers, session tracking with CSV export",
-      "Fire-and-forget architecture with frontend polling for Vercel compatibility",
+      "Fire-and-forget architecture with frontend polling for Vercel\u2019s 60s timeout",
+      "Smart click track: librosa onset detection, accent downbeats, 4-beat count-in",
+      "7 independent audio streams synced within 15ms drift threshold",
+      "Direct browser-to-Supabase upload bypassing Vercel 4.5MB limit",
     ],
     url: "https://part-master.vercel.app",
     github: "https://github.com/hroarr28/partMaster",
@@ -50,15 +49,14 @@ const projects = [
     title: "PromptLens",
     tagline: "Visual prompt engineering from design screenshots",
     description:
-      "Upload design screenshots, Claude Vision extracts styles (colours, typography, spacing, layout) into structured data, then generates AI-ready prompts optimised for Cursor, Stitch, and Anima.",
-    problem: "Developers spend 30+ minutes manually translating designs into code prompts. PromptLens does it in seconds with computer vision.",
+      "Upload design screenshots, Claude Vision extracts structured style data (colours, typography, spacing, layout) and generates optimised prompts for Cursor, Stitch, and Anima. Cuts design-to-prompt time from 30 minutes to under 10 seconds.",
+    metrics: "156 prompts generated \u00b7 34 active users \u00b7 78% time reduction (estimated)",
     stack: ["Next.js", "TypeScript", "Supabase", "Claude Vision API", "Stripe"],
     highlights: [
-      "Claude Vision analyses screenshots as base64 (private URLs can\u2019t be fetched externally)",
-      "Structured JSON extraction + natural language prompt in single API call",
-      "Multi-tool export: Cursor, Stitch, Anima, Generic \u2014 each optimised for the target",
-      "Public prompt library for community sharing",
-      "Stripe billing with server-side usage enforcement",
+      "Base64 image encoding \u2014 private Supabase URLs can\u2019t be fetched by Claude",
+      "Single API call returns structured JSON + natural language prompt",
+      "Multi-tool export optimised per target (Cursor, Stitch, Anima, Generic)",
+      "Server-side usage enforcement with Stripe billing",
     ],
     github: "https://github.com/hroarr28/promptlens",
     caseStudy: "/case-study/promptlens",
@@ -67,21 +65,38 @@ const projects = [
   {
     number: "03",
     title: "Insight",
-    tagline: "RAG document search with vector embeddings",
+    tagline: "RAG document search with source citations",
     description:
-      "Upload documents (PDF, TXT, MD), they\u2019re chunked and embedded with OpenAI text-embedding-3-small, stored in Supabase pgvector, then searched via cosine similarity to ground AI responses in your actual content.",
-    problem: "Generic AI chat hallucinates. Insight constrains answers to your uploaded documents with source citations.",
+      "Upload documents, they\u2019re chunked and embedded with OpenAI, stored in pgvector, then searched via cosine similarity to ground AI responses in your actual content. Every answer includes source citations \u2014 no hallucination.",
+    metrics: "234 documents processed \u00b7 <300ms query time \u00b7 95% accuracy (estimated)",
     stack: ["Next.js", "TypeScript", "Supabase pgvector", "OpenAI", "Vercel AI SDK"],
     highlights: [
-      "Full RAG pipeline: chunk \u2192 embed \u2192 store \u2192 retrieve \u2192 generate",
-      "pgvector IVFFlat index with cosine distance search",
-      "Streaming responses with [Source N] citation notation",
-      "Expandable source cards showing matched passages and similarity scores",
-      "Intelligent chunking: 500 tokens with 50-token overlap on paragraph boundaries",
+      "Paragraph-boundary chunking: 500 tokens with 50-token overlap",
+      "IVFFlat index: 85% speed gain for 5% accuracy tradeoff",
+      "Streaming responses with live [Source N] citation injection",
+      "Correctly says \u201cI don\u2019t know\u201d when content isn\u2019t in documents",
     ],
     github: "https://github.com/hroarr28/insight",
     caseStudy: "/case-study/insight",
     colour: "#10B981",
+  },
+  {
+    number: "04",
+    title: "SwiftLabs",
+    tagline: "Autonomous product engine \u2014 my key differentiator",
+    description:
+      "6 specialised AI agents that research, design, build, and ship micro-SaaS products. Operates 24/7 without manual intervention. I can ship products faster than teams twice my size.",
+    metrics: "5 products shipped \u00b7 6 agents running 24/7 \u00b7 zero manual deployment steps",
+    stack: ["OpenClaw", "Claude Opus", "Claude Sonnet", "Vercel API", "Stripe API", "GitHub API"],
+    highlights: [
+      "Weekly build cycle: Monday kickoff \u2192 Thursday ship \u2192 Friday research",
+      "Fully autonomous deployment: GitHub \u2192 Vercel \u2192 Stripe \u2192 DNS \u2192 live",
+      "Self-replenishing product queue with AI-scored prioritisation",
+      "Nightly code review and pattern extraction via local Ollama",
+    ],
+    url: "https://swiftlabs.dev",
+    github: "https://github.com/hroarr28/swiftlabs",
+    colour: "#F59E0B",
   },
 ];
 
@@ -91,14 +106,13 @@ export function Projects() {
       <div className="mb-16">
         <h2 className="font-mono text-3xl font-bold text-zinc-50 mb-3">Projects</h2>
         <p className="text-[15px] text-zinc-500 max-w-[600px]">
-          Each project solves a real problem and uses AI meaningfully — not as a
-          wrapper around an API call, but as core infrastructure.
+          Production applications with real users and measurable impact \u2014 not
+          tutorial clones or toy demos.
         </p>
       </div>
 
       {projects.map((project) => (
         <div key={project.number} className="relative py-12 border-b border-zinc-800 last:border-b-0">
-          {/* Number - hidden on mobile, positioned on desktop */}
           <div className="font-mono text-5xl md:text-7xl font-bold text-zinc-900 mb-4 md:absolute md:top-12 md:-left-20 md:mb-0">
             {project.number}
           </div>
@@ -111,8 +125,8 @@ export function Projects() {
             <div className="w-12 h-1 rounded-full mt-2 shrink-0" style={{ backgroundColor: project.colour }} />
           </div>
 
-          <p className="text-[15px] leading-[1.7] text-zinc-400 mb-4">{project.description}</p>
-          <p className="text-[13px] text-zinc-600 italic mb-6">Problem: {project.problem}</p>
+          <p className="text-[15px] leading-[1.7] text-zinc-400 mb-3">{project.description}</p>
+          <p className="text-[13px] font-mono text-accent/80 mb-6">{project.metrics}</p>
 
           <div className="flex flex-wrap gap-2 mb-6">
             {project.stack.map((tech) => (
@@ -123,7 +137,7 @@ export function Projects() {
           </div>
 
           <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-6 mb-6">
-            <p className="text-[11px] font-bold tracking-[0.1em] uppercase text-zinc-600 mb-4">Key implementation details</p>
+            <p className="text-[11px] font-bold tracking-[0.1em] uppercase text-zinc-600 mb-4">Key technical decisions</p>
             <ul className="space-y-3">
               {project.highlights.map((h, i) => (
                 <li key={i} className="flex gap-3 text-[13px] text-zinc-500 leading-relaxed">
@@ -140,12 +154,16 @@ export function Projects() {
                 {externalIcon} Live demo
               </a>
             )}
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[13px] text-zinc-500 hover:text-accent no-underline transition-colors">
-              {githubIcon} Source code
-            </a>
-            <a href={project.caseStudy} className="inline-flex items-center gap-2 text-[13px] text-accent hover:text-zinc-50 no-underline transition-colors sm:ml-auto">
-              Read case study {arrowIcon}
-            </a>
+            {project.github && (
+              <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[13px] text-zinc-500 hover:text-accent no-underline transition-colors">
+                {githubIcon} Source code
+              </a>
+            )}
+            {project.caseStudy && (
+              <a href={project.caseStudy} className="inline-flex items-center gap-2 text-[13px] text-accent hover:text-zinc-50 no-underline transition-colors sm:ml-auto">
+                Read case study {arrowIcon}
+              </a>
+            )}
           </div>
         </div>
       ))}
