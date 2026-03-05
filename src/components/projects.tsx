@@ -31,7 +31,7 @@ const projects = [
     tagline: "AI-powered practice companion for musicians",
     description:
       "Upload a song, AI separates it into 7 stems in under 3 minutes, giving musicians the practice tool they\u2019ve been waiting for. Real-time mixer with tempo/pitch control, smart click track with beat detection, A-B looping, and session tracking.",
-    metrics: "847 songs processed \u00b7 23 weekly active users \u00b7 \u00a30.05/song vs \u00a320/month competitors",
+    metrics: "7-stem separation \u00b7 \u00a30.05/song processing cost \u00b7 74 tests passing",
     stack: ["Next.js", "TypeScript", "Supabase", "Replicate", "Howler.js", "Tone.js", "Modal"],
     highlights: [
       "Fire-and-forget architecture with frontend polling for Vercel\u2019s 60s timeout",
@@ -50,7 +50,7 @@ const projects = [
     tagline: "Visual prompt engineering from design screenshots",
     description:
       "Upload design screenshots, Claude Vision extracts structured style data (colours, typography, spacing, layout) and generates optimised prompts for Cursor, Stitch, and Anima. Cuts design-to-prompt time from 30 minutes to under 10 seconds.",
-    metrics: "156 prompts generated \u00b7 34 active users \u00b7 78% time reduction (estimated)",
+    metrics: "4 export formats \u00b7 Stripe billing \u00b7 public prompt library",
     stack: ["Next.js", "TypeScript", "Supabase", "Claude Vision API", "Stripe"],
     highlights: [
       "Base64 image encoding \u2014 private Supabase URLs can\u2019t be fetched by Claude",
@@ -68,7 +68,7 @@ const projects = [
     tagline: "RAG document search with source citations",
     description:
       "Upload documents, they\u2019re chunked and embedded with OpenAI, stored in pgvector, then searched via cosine similarity to ground AI responses in your actual content. Every answer includes source citations \u2014 no hallucination.",
-    metrics: "234 documents processed \u00b7 <300ms query time \u00b7 95% accuracy (estimated)",
+    metrics: "Full RAG pipeline \u00b7 pgvector IVFFlat index \u00b7 streaming with source citations",
     stack: ["Next.js", "TypeScript", "Supabase pgvector", "OpenAI", "Vercel AI SDK"],
     highlights: [
       "Paragraph-boundary chunking: 500 tokens with 50-token overlap",
@@ -86,7 +86,7 @@ const projects = [
     tagline: "Autonomous product engine \u2014 my key differentiator",
     description:
       "6 specialised AI agents that research, design, build, and ship micro-SaaS products. Operates 24/7 without manual intervention. I can ship products faster than teams twice my size.",
-    metrics: "5 products shipped \u00b7 6 agents running 24/7 \u00b7 zero manual deployment steps",
+    metrics: "5 products shipped \u00b7 6 agents \u00b7 fully autonomous deployment pipeline",
     stack: ["OpenClaw", "Claude Opus", "Claude Sonnet", "Vercel API", "Stripe API", "GitHub API"],
     highlights: [
       "Weekly build cycle: Monday kickoff \u2192 Thursday ship \u2192 Friday research",

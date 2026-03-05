@@ -10,9 +10,9 @@ export function Hero() {
       </h1>
       <p className="text-lg leading-[1.7] text-zinc-400 mb-8 max-w-[700px]">
         3 years building production applications with Next.js, TypeScript, and
-        React. I&apos;ve shipped 5 SaaS products with 1,200+ active users, plus I
-        run a 6-agent system that deploys code autonomously. I architect AI as
-        core infrastructure that delivers measurable business value.
+        React. I&apos;ve shipped 5 SaaS products end-to-end (auth, payments, deployment),
+        plus I run a 6-agent system that deploys code autonomously. I architect
+        AI as core infrastructure — not API wrappers.
       </p>
       <div className="flex flex-col sm:flex-row gap-3">
         <a

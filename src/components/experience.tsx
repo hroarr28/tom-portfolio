@@ -59,7 +59,7 @@ export function Experience() {
             </div>
           </div>
           <p className="text-[14px] leading-[1.7] text-zinc-400 mt-3">
-            Shipped 5 SaaS products serving 1,200+ users while working full-time.
+            Shipped 5 SaaS products end-to-end while working full-time.
             Built a 6-agent AI system that autonomously researches, designs, builds,
             and deploys products. This isn&apos;t a side hustle &mdash; it&apos;s a product
             engine that proves I can architect and ship at scale.
