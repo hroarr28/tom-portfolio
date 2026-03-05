@@ -18,10 +18,10 @@ const capabilities = [
     tags: ["Claude Vision", "Base64", "Structured extraction"],
   },
   {
-    title: "AI content generation at 99.8% cost reduction",
+    title: "AI as daily development infrastructure",
     description:
-      "Created 1,425 exam questions using a 3-step pipeline: local Ollama generates base questions (free), creates SEND-adapted variants, then Claude reviews for accuracy. Total cost under \u00a35 vs. estimated \u00a32,850 for manual creation.",
-    tags: ["Ollama", "Claude", "Batch processing", "Quality assurance"],
+      "Cursor for code completion, Claude for architecture decisions and debugging, local Ollama models for batch processing. AI isn\u2019t a novelty \u2014 it\u2019s how I ship 5 products while working a full-time job. I know when to lean on AI and when to write it myself.",
+    tags: ["Cursor", "Claude", "Ollama", "Prompt engineering"],
   },
 ];
 

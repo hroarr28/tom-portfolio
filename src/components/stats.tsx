@@ -1,7 +1,7 @@
 const stats = [
   { value: "5", label: "Shipped products", detail: "Auth, payments, deployed" },
   { value: "6", label: "AI agents", detail: "Running 24/7 autonomously" },
-  { value: "1,425", label: "AI-generated questions", detail: "3-step verified" },
+  { value: "5", label: "Stripe integrations", detail: "Auth, checkout, webhooks" },
   { value: "3", label: "Years commercial", detail: "React / Next.js / TypeScript" },
 ];
 
